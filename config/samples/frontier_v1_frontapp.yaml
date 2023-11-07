@@ -1,0 +1,15 @@
+apiVersion: frontier.demo.com/v1
+kind: FrontApp
+metadata:
+  labels:
+    app.kubernetes.io/name: frontapp
+    app.kubernetes.io/instance: frontapp-sample
+    app.kubernetes.io/part-of: frontapp
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: frontapp
+  name: demo
+  namespace: frontier
+spec:
+  image: yuki:5000/demo:v1
+  reverseProxy: cloudnative
+  url: cloudnative

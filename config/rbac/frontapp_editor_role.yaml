@@ -1,0 +1,31 @@
+# permissions for end users to edit frontapps.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: frontapp-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: frontapp
+    app.kubernetes.io/part-of: frontapp
+    app.kubernetes.io/managed-by: kustomize
+  name: frontapp-editor-role
+rules:
+- apiGroups:
+  - frontier.demo.com
+  resources:
+  - frontapps
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - frontier.demo.com
+  resources:
+  - frontapps/status
+  verbs:
+  - get
