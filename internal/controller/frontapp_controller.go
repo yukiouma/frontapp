@@ -107,8 +107,9 @@ func (r *FrontAppReconciler) SetupWithManager(mgr ctrl.Manager) error {
 		Owns(&corev1.ConfigMap{}).
 		Owns(&netv1.Ingress{}).
 		WithEventFilter(predicate.Funcs{
-			DeleteFunc: func(_ event.DeleteEvent) bool {
-				return false
+			DeleteFunc: func(e event.DeleteEvent) bool {
+				_, ok := e.Object.(*frontierv1.FrontApp)
+				return !ok
 			},
 		}).
 		Complete(r)
